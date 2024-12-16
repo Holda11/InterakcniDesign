@@ -1,10 +1,13 @@
 /* Změna barvy pozadí kalendáře */
 .react-datepicker {
+    color: black;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
+    font-size: 16px;
+    height: 55px;
   }
   
   /* Stylování hlavičky kalendáře */
@@ -49,7 +52,7 @@
     line-height: 1.5;
     border: 0;
     background: none;
-    color: white;
+    color: rgb(0, 0, 0);
   }
   
   .react-datepicker__navigation:hover {
@@ -58,8 +61,14 @@
   
   /* Footer */
   .react-datepicker__footer {
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     border-top: 1px solid #ddd;
   }
+.calendarFlex{
+  display: flex; // Align input groups side by side
+  gap: 2%; // Space between inputs
+  width: 100%;
+  height: 30%;
+}
   

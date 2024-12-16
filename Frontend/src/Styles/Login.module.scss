@@ -1,0 +1,22 @@
+.button{
+    display: flex;
+    gap: 3%;
+    font-weight: bold;
+    width: 100%;
+    white-space: nowrap;
+    text-align: center;
+    color: white;
+    justify-content: center;
+    .buttonGradient1{
+        font-weight: bold;
+        background: linear-gradient(to right, rgba(176,80,184,255),rgba(229,121,145,255));
+    }
+    .buttonGradient2{
+        font-weight: bold;
+        background: linear-gradient(to right, rgba(234,126,142,255),rgba(230,143,100,255) );
+    }
+    .buttonGradient3{
+        font-weight: bold;
+        background: linear-gradient(to right, rgba(217,131,111,255), rgba(171,87,163,255));
+    }
+}

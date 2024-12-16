@@ -3,6 +3,7 @@ import axios, { AxiosResponse } from 'axios';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../store/userSlice'; // Ujisti se, že importuješ správnou akci
 import { useNavigate } from 'react-router-dom';
+import Styles from '../Styles/RegisterComponent.module.scss'
 
 const RegisterComponent: React.FC = () => {
   const dispatch = useDispatch();
@@ -88,7 +89,7 @@ const RegisterComponent: React.FC = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit">Registrovat</button>
+      <button className={Styles.buttonGradient} type="submit">Registrovat</button>
       {error && <p>{error}</p>}
     </form>
   );

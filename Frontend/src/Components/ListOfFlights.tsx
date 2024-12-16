@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import Styles from '../Styles/ListOfFlights.module.scss'
 interface FlightData {
   _id: string;
   departure_Airport: string;
@@ -44,7 +44,7 @@ const FlightList: React.FC = () => {
   return (
     <div>
       <h2>Historie Zakoupených letenek:</h2>
-      <ul>
+      <ul className={Styles.ul}>
         {flights.map((flight) => (
           <li key={flight._id}>
             <div>

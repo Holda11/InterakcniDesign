@@ -1,0 +1,31 @@
+.button{
+    display: flex;
+    gap: 3%;
+    font-weight: bold;
+
+    .buttonGradient1{
+        font-weight: bold;
+        background: linear-gradient(to right, rgba(176,80,184,255),rgba(229,121,145,255));
+    }
+    .buttonGradient2{
+        font-weight: bold;
+        background: linear-gradient(to right, rgba(234,126,142,255),rgba(230,143,100,255) );
+    }
+    .buttonGradient3{
+        font-weight: bold;
+        background: linear-gradient(to right, rgba(217,131,111,255), rgba(171,87,163,255));
+    }
+}
+ul{
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+    font-size: 12px;
+}
+ul li{
+    border: 1px solid #ddd; /* Add a thin border to each list item */
+    margin-top: -1px; /* Prevent double borders */  
+    padding: 12px;
+    border-radius: 8px;
+    background-image: linear-gradient(to right,purple, rgb(177, 130, 138));
+}

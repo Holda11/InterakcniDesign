@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../store/store";
 import { setArrivalCity, setArrivalIATA, setDepartureCity, setDepartureDate, setDepartureIATA, setReturnArrivalCity, setReturnArrivalIATA, setReturnDate, setReturnDepartureCity, setReturnDepartureIATA, setLayovers, setPrice } from "../store/flightSlice";
 import { useNavigate } from "react-router-dom";
+import styles from "../Styles/Flights.module.scss";
 
 const Flights: React.FC = () => {
   const [flights, setFlights] = useState<{ departure: Flight; arrival: Flight }[]>([]);
@@ -144,12 +145,12 @@ const Flights: React.FC = () => {
   return (
     <div>
       <h1>Flight Results</h1>
-      <div>
-        <button onClick={() => handleFilterChange("best")}>Nejlepší</button>
-        <button onClick={() => handleFilterChange("cheapest")}>Nejlevnější</button>
-        <button onClick={() => handleFilterChange("shortest")}>Nejkratší</button>
+      <div className={styles.button}>
+        <button className={styles.buttonGradient1} onClick={() => handleFilterChange("best")}>Nejlepší</button>
+        <button className={styles.buttonGradient2} onClick={() => handleFilterChange("cheapest")}>Nejlevnější</button>
+        <button className={styles.buttonGradient3} onClick={() => handleFilterChange("shortest")}>Nejkratší</button>
       </div>
-      <ul>
+      <ul className={styles.list}>
         {sortedFlights.map((pair, index) => (
           <li key={index}>
             <div>

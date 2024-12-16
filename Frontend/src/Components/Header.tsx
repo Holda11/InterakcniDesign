@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Styles from '../Styles/Header.module.scss'
 
 const Header: React.FC = () => {
   const [userName, setUserName] = useState<string | null>(null);
@@ -19,7 +20,7 @@ const Header: React.FC = () => {
         {userName ? (
           <span onClick={()=> navigate('/Profile')}>Welcome, {userName}</span> // Zobrazení jména uživatele
         ) : (
-          <button onClick={()=> navigate('/SingIn')}>Login</button> // Zobrazení tlačítka pro přihlášení
+          <button className={Styles.bntGradient} onClick={()=> navigate('/SingIn')}>Login</button> // Zobrazení tlačítka pro přihlášení
         )}
       </div>
     </header>

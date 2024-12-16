@@ -10,7 +10,7 @@ const Calendars = () => {
     const { departureDate, returnDate } = useSelector((state: RootState) => state.FlightForm)
 
     return (
-        <div>
+        <div className={style.calendarFlex}>
             <div>
                 <DatePicker 
                     className={style["react-datepicker"]}
@@ -24,7 +24,7 @@ const Calendars = () => {
                         }
                     }}
                     dateFormat="dd.MM.yyyy"
-                    placeholderText="Datum odletu:"
+                    placeholderText="Odlet"
                     minDate={new Date()}
                 />
             </div>
@@ -41,7 +41,7 @@ const Calendars = () => {
                         }
                     }}
                     dateFormat="dd.MM.yyyy"
-                    placeholderText="Vyberte datum návratu"
+                    placeholderText="Přílet"
                     minDate={departureDate ? new Date(departureDate) : new Date()} 
                 />
             </div>

@@ -1,0 +1,41 @@
+.searchViewContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: repeat(2, 1fr); 
+    background: linear-gradient(to right, #9061c6, #e59090);
+    padding: 2%;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    margin: 50px auto;
+    height: 40%;
+    align-items: center;
+  }
+  
+.Item {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-self: center
+}
+    .searchButton {
+        text-align:center; 
+        background-color: #6b1eff;
+        color: #ffffff;
+        border: none;
+        padding: 25px 60px;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+        grid-column: 4;
+        grid-row: 2;
+        &:hover {
+          background-color: #5a18d8;
+        }
+        justify-self: left;
+    }
+    
+
+
+

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../store/userSlice'; 
 import { useNavigate } from 'react-router-dom';
+import Styles from '../Styles/LoginComponent.module.scss'
 
 const LoginComponent = () => {
   const [email, setEmail] = useState<string>('');
@@ -40,11 +41,12 @@ const LoginComponent = () => {
   };
 
   return (
-    <div className="login-form">
+    <div className={"login-form"}>
       <h2>Přihlášení</h2>
+      <div className={Styles.loginFields}>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Email: </label>
           <input
             type="email"
             id="email"
@@ -54,7 +56,7 @@ const LoginComponent = () => {
           />
         </div>
         <div>
-          <label htmlFor="password">Heslo</label>
+          <label htmlFor="password">Heslo: </label>
           <input
             type="password"
             id="password"
@@ -64,8 +66,9 @@ const LoginComponent = () => {
           />
         </div>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-        <button type="submit">Přihlásit se</button>
+        <button className={Styles.bntGradient} type="submit">Přihlásit se</button>
       </form>
+      </div>
     </div>
   );
 };

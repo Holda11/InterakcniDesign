@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import ListOfFlights from '../Components/ListOfFlights';
+import styles from "../Styles/Profile.module.scss";
 
 const Profile = () => {
     const userName = localStorage.getItem("userName")
@@ -11,10 +12,10 @@ const Profile = () => {
     }
 
   return (
-    <div>
+    <div className={styles.profileContainer}>
         <div>
-            <h1>Vítejte {userName}</h1>
-            <button onClick={logOut}>Odhlásit se</button>
+            <h2>Vítejte {userName}</h2>
+            <button className={styles.buttonLogout} onClick={logOut}>Odhlásit se</button>
         </div>
         <ListOfFlights/>
     </div>

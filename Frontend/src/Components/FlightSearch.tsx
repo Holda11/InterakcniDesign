@@ -3,6 +3,7 @@ import data from "../DummyData.ts";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../store/store";
 import { setArrivalCity, setArrivalIATA, setDepartureCity, setDepartureIATA } from "../store/flightSlice";
+import styles from "../Styles/FlightSearch.module.scss";
 
 interface Location {
   city: string;
@@ -66,45 +67,42 @@ const FlightSearch: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Vyhledávač Letenek</h1>
-      <div>
-        <input
-          type="text"
-          placeholder="Vyhledat město nebo letiště..."
-          value={departureCity}
-          onChange={(e) => dispatch(setDepartureCity(e.target.value))}
-          style={{ padding: "10px", width: "100%" }}
-        />
-        {filteredLocationsDeparture.length > 0 && (
-          <ul>
-            {filteredLocationsDeparture.map((location) => (
-              <li key={location.iata} onClick={() => handleSelectDeparture(location)}>
-                {location.city} ({location.iata}) - {location.airport}
-              </li>
-            ))}
-          </ul>
-        )}
+    <div className={styles.flightSearchContainer}>
+        <div className={styles.inputGroup}>
+          <input className={styles.input}
+            type="text"
+            placeholder="Odkud"
+            value={departureCity}
+            onChange={(e) => dispatch(setDepartureCity(e.target.value))}
+          />
+          {filteredLocationsDeparture.length > 0 && (
+            <ul className={styles.list}>
+              {filteredLocationsDeparture.map((location) => (
+                <li key={location.iata} onClick={() => handleSelectDeparture(location)}>
+                  {location.city} ({location.iata}) - {location.airport}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        <div className={styles.inputGroup}>
+          <input className={styles.input}
+            type="text"
+            placeholder="Kam"
+            value={arrivalCity}
+            onChange={(e) => dispatch(setArrivalCity(e.target.value))}
+          />
+          {filteredLocationsArrival.length > 0 && (
+            <ul className={styles.list}>
+              {filteredLocationsArrival.map((location) => (
+                <li key={location.iata} onClick={() => handleSelectArrival(location)}>
+                  {location.city} ({location.iata}) - {location.airport}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
-      <div>
-        <input
-          type="text"
-          placeholder="Vyhledat město nebo letiště..."
-          value={arrivalCity}
-          onChange={(e) => dispatch(setArrivalCity(e.target.value))}
-          style={{ padding: "10px", width: "100%" }}
-        />
-        {filteredLocationsArrival.length > 0 && (
-          <ul>
-            {filteredLocationsArrival.map((location) => (
-              <li key={location.iata} onClick={() => handleSelectArrival(location)}>
-                {location.city} ({location.iata}) - {location.airport}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </div>
   );
 };
 
