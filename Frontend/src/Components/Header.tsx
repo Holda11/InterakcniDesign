@@ -1,26 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Styles from '../Styles/Header.module.scss'
+import style from '../Styles/Header.module.scss'
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
+
+
 
 const Header: React.FC = () => {
-  const [userName, setUserName] = useState<string | null>(null);
+  const [previousPath, setPreviousPath] = useState<string | null>(null)
   const navigate = useNavigate();
+  const location = useLocation();
+  const { userName } = useSelector((state: RootState) => state.User)
+
+  const isNotRoot = location.pathname !== "/";
 
   useEffect(() => {
-    // Zkontrolujte, jestli jsou v localStorage uložena data
-    const storedUserName = localStorage.getItem('userName');
-    if (storedUserName) {
-      setUserName(storedUserName);
-    }
-  }, []);
+    // Ulož aktuální cestu jako "previousPath" při změně location.pathname
+    return () => {
+      setPreviousPath(location.pathname);
+    };
+  }, [location.pathname]);
 
   return (
-    <header>
-      <div>
+    <header className={style["Header"]}>
+        <div style={{ justifySelf: 'left' }}>
+      {isNotRoot && previousPath && (
+          <button onClick={() => navigate(previousPath)}>Zpátky</button>
+        )}
+        </div>
+      <div onClick={() => navigate('/')} className={style["Header__Center"]}>
+        <img src="logoflycatcher.png" alt="img" />
+      </div>
+      <div className={style["Header__Right"]} style={{ justifySelf: 'right' }}>
         {userName ? (
-          <span onClick={()=> navigate('/Profile')}>Welcome, {userName}</span> // Zobrazení jména uživatele
+          <span onClick={() => navigate('/Profile')}>Welcome, {userName}</span> // Zobrazení jména uživatele
         ) : (
-          <button className={Styles.bntGradient} onClick={()=> navigate('/SingIn')}>Login</button> // Zobrazení tlačítka pro přihlášení
+          <button className={Styles.bntGradient} onClick={() => navigate('/SingIn')}>Login</button> // Zobrazení tlačítka pro přihlášení
         )}
       </div>
     </header>

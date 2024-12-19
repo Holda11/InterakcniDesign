@@ -2,3 +2,25 @@
     font-weight: bold;
     background: linear-gradient(to right, rgba(176,80,184,255),rgba(229,121,145,255));
 }
+
+.Header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: space-between; // Rozloží elementy na obě strany
+    padding: 0 16px; // Přidání prostoru po stranách (volitelné)
+    height: 60px; // Výška hlavičky (volitelné)
+    background-color: #f8f9fa; // Barva pozadí (volitelné)
+    div{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    &__Center{
+      img{
+        cursor: pointer;
+      }
+    }
+    
+  }
+  

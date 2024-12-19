@@ -68,14 +68,14 @@ const Flights: React.FC = () => {
       case "shortest":
         sorted.sort(
           (a, b) =>
-            a.departure.duration + a.arrival.duration - 
+            a.departure.duration + a.arrival.duration -
             (b.departure.duration + b.arrival.duration)
         );
         break;
       case "best":
         sorted.sort(
           (a, b) =>
-            ((a.departure.price + a.arrival.price) / 10) + a.departure.duration + a.arrival.duration - 
+            ((a.departure.price + a.arrival.price) / 10) + a.departure.duration + a.arrival.duration -
             (((b.departure.price + b.arrival.price) / 10) + b.departure.duration + b.arrival.duration)
         );
         break;
@@ -143,65 +143,80 @@ const Flights: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Flight Results</h1>
+    <div className={styles.wrapper}>
+      <div className={styles.InfoBox}>
+      <h2>Vyhledané lety</h2>
       <div className={styles.button}>
-        <button className={styles.buttonGradient1} onClick={() => handleFilterChange("best")}>Nejlepší</button>
-        <button className={styles.buttonGradient2} onClick={() => handleFilterChange("cheapest")}>Nejlevnější</button>
-        <button className={styles.buttonGradient3} onClick={() => handleFilterChange("shortest")}>Nejkratší</button>
+        <button className={styles.buttonGradient} onClick={() => handleFilterChange("best")}>Nejlepší</button>
+        <button className={styles.buttonGradient} onClick={() => handleFilterChange("cheapest")}>Nejlevnější</button>
+        <button className={styles.buttonGradient} onClick={() => handleFilterChange("shortest")}>Nejkratší</button>
       </div>
+      </div>
+      
       <ul className={styles.list}>
         {sortedFlights.map((pair, index) => (
           <li key={index}>
-            <div>
-              <h3>Let TAM (departure)</h3>
-              <div>
-                <strong>
-                  {pair.departure.departure_airport.name} →{" "}
-                  {pair.departure.arrival_airport.name}
-                </strong>
+            <div className={styles.Gapper}>
+              <div className={styles.Cell}>
+                <h3>Let TAM (departure)</h3>
                 <div>
-                  <span>Doba letu: {pair.departure.duration} minut</span>
-                  <span>Cena: {pair.departure.price} Kč</span>
+                  <strong>
+                    {pair.departure.departure_airport.name} →{" "}
+                    {pair.departure.arrival_airport.name}
+                  </strong>
+                  <div className={styles.Space}>
+                    <span><strong>Doba letu:</strong> {Math.round(pair.departure.duration / 60)} H</span>
+                    <span><strong>Cena:</strong> {pair.departure.price} Kč</span>
+                  </div>
+                  <div className={styles.Layovers}>
+                    <strong>Přestupy:</strong>
+                    {pair.departure.layovers && pair.departure.layovers.length > 0 ? (
+                      <ul>
+                        {pair.departure.layovers.map((layover, idx) => (
+                          <li key={idx}>
+                            <span>{layover.name}</span> - Doba přestupu: {Math.round(layover.duration / 60)} H
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <span>Žádný přestup</span>
+                    )}
+                  </div>
                 </div>
-                <strong>Layovers:</strong>
-                {pair.departure.layovers && pair.departure.layovers.length > 0 ? (
-                  <ul>
-                    {pair.departure.layovers.map((layover, idx) => (
-                      <li key={idx}>
-                        {layover.name} - Doba přestupu: {layover.duration} minut
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <span>Žádný přestup</span>
-                )}
               </div>
 
-              <h3>Let ZPĚT (arrival)</h3>
-              <div>
-                <strong>
-                  {pair.arrival.departure_airport.name} →{" "}
-                  {pair.arrival.arrival_airport.name}
-                </strong>
+
+              <div className={styles.Cell}>
+                <h3>Let ZPĚT (arrival)</h3>
                 <div>
-                  <span>Doba letu: {pair.arrival.duration} minut</span>
-                  <span>Cena: {pair.arrival.price} Kč</span>
+                  <strong>
+                    {pair.arrival.departure_airport.name} →{" "}
+                    {pair.arrival.arrival_airport.name}
+                  </strong>
+                  <div className={styles.Space}>
+                    <span><strong>Doba letu:</strong> {Math.round(pair.arrival.duration / 60)} H</span>
+                    <span><strong>Cena:</strong> {pair.arrival.price} Kč</span>
+                  </div>
+                  <div className={styles.Layovers}>
+                    <strong>Přestupy:</strong>
+                    {pair.arrival.layovers && pair.arrival.layovers.length > 0 ? (
+                      <ul>
+                        {pair.arrival.layovers.map((layover, idx) => (
+                          <li key={idx}>
+                            <span>{layover.name}</span> - Doba přestupu: {Math.round(layover.duration / 60)} H
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <span>Žádný přestup</span>
+                    )}
+                  </div>
                 </div>
-                <strong>Layovers:</strong>
-                {pair.arrival.layovers && pair.arrival.layovers.length > 0 ? (
-                  <ul>
-                    {pair.arrival.layovers.map((layover, idx) => (
-                      <li key={idx}>
-                        {layover.name} - Doba přestupu: {layover.duration} minut
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <span>Žádný přestup</span>
-                )}
               </div>
-              <button onClick={() => handleSelectedFlight(pair)}>Zvolit</button>
+              <div className={styles.Choicer}>
+                <button onClick={() => handleSelectedFlight(pair)}>Vybrat</button>
+                <span>{pair.departure.price + pair.arrival.price} Kč</span>   
+              </div>
             </div>
           </li>
         ))}

@@ -3,6 +3,7 @@ import { RootState } from '../store/store';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import style from "../Styles/Payment.module.scss"
 
 const Payment = () => {
     const [travelers, setTravelers] = useState<number>(1);
@@ -26,6 +27,7 @@ const Payment = () => {
     const { departureCity, arrivalCity, departureDate, returnDepartureCity, returnArrivalCity, returnDate, departureIATA, arrivalIATA, price, layovers } = useSelector(
         (state: RootState) => state.FlightForm
     );
+    const {userName} = useSelector((state: RootState) => state.User)
 
     // Handle input changes and validate the form
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,12 +79,27 @@ const Payment = () => {
         postData()
         navigate('/success')
     }
+    const handleFakeClick = () => {
+        navigate('/success')
+    }
 
     return (
-        <div>
-            <div>
-                <h3>Let TAM (departure)</h3>
-                <div>
+        <div className={style["FlightWrapper"]}>
+            <div className={style["Row"]}>
+            <div className={style["Buttons"]}>
+            <h2>Platba</h2>
+            {
+                userName ? (
+                    <button disabled={!isFormValid} className={isFormValid ? style["Valid"] : style["Valid__No"]} onClick={() => handleClick()}>Potvrdit</button>
+                ) : (
+                    <button disabled={!isFormValid} className={isFormValid ? style["Valid"] : style["Valid__No"]} onClick={() => handleFakeClick()}>Potvrdit</button>
+                )
+            }
+            </div>
+                <div className={style["Flight"]}>
+                    <div className={style["Flight__Cell"]}>
+                <div className={style["Flight__Body"]}>
+                    <h3>Let TAM (departure)</h3>
                     <strong>
                         {departureCity} → {arrivalCity}
                     </strong>
@@ -90,8 +107,8 @@ const Payment = () => {
                         <span>Datum letu: {departureDate}</span>
                     </div>
                 </div>
+                <div className={style["Flight__Body"]}>
                 <h3>Let ZPĚT (arrival)</h3>
-                <div>
                     <strong>
                         {returnDepartureCity} → {returnArrivalCity}
                     </strong>
@@ -99,18 +116,23 @@ const Payment = () => {
                         <span>Datum letu: {returnDate}</span>
                     </div>
                 </div>
-                <div>
+                <div className={style["Flight__Layovers"]}>
                     <h3>Přestupy</h3>
                     <div>
                         {layovers?.map((m, i) => (
-                            <strong key={i}>
-                                {m.airport} Doba přestupu: {m.duration} minut
-                            </strong>
+                            <span key={i}>
+                                <strong>{m.name}</strong> - Doba přestupu: {Math.floor(m.duration / 60)} H
+                            </span>
                         ))}
                     </div>
                 </div>
-            </div>
-            <div>
+                    </div>
+                </div> 
+            </div>   
+            <div className={style["Row"]}>
+            <div className={style["Form"]}>
+                <div>
+                <div>
                 <h3>Údaje</h3>
                 <form>
                     <label>Jméno</label>
@@ -120,8 +142,8 @@ const Payment = () => {
                     <label>Datum narození</label>
                     <input type="date" name="birthDate" value={formData.birthDate} onChange={handleInputChange} />
                 </form>
-            </div>
-            <div>
+                </div>
+                <div>
                 <h3>Kontaktní údaje</h3>
                 <form>
                     <label>E-mail</label>
@@ -129,7 +151,10 @@ const Payment = () => {
                     <label>Telefonní číslo</label>
                     <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} />
                 </form>
-                <h3>Způsob platby</h3>
+                </div>
+                </div>
+                <div>
+                        <h3>Způsob platby</h3>
                 <form>
                     <label>
                         <input type="radio" value="option1" checked={selectedOption === 'option1'} onChange={() => setSelectedOption('option1')} />
@@ -155,8 +180,11 @@ const Payment = () => {
                         </form>
                     </div>
                 )}
+                </div>
+                
             </div>
             <div>
+            <div className={style["White"]}>
                 <ul>
                     <li>
                         <span>Počet cestujících:</span>
@@ -168,7 +196,7 @@ const Payment = () => {
                     </li>
                 </ul>
             </div>
-            <div>
+            <div className={style["White"]}>
                 <ul>
                     <li>
                         <span>Cestující</span>
@@ -192,9 +220,8 @@ const Payment = () => {
                     </li>
                 </ul>
             </div>
-            <div>
-                <button disabled={!isFormValid} onClick={() => handleClick()}>Potvrdit</button>
-                <button onClick={postData}>Debug Fetch</button>
+            </div>
+            
             </div>
         </div>
     );

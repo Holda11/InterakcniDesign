@@ -1,8 +1,33 @@
-.profileContainer{
-    background: linear-gradient(to right, #9061c6, #e59090);
-    border-radius: 8px;
-    .buttonLogout{
-        background: linear-gradient(to right, #e59090, #9061c6);
-        border-color: black;
+.Profile{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+    &__Left{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        h2{
+            font-size: 32px;
+        }
+        button{
+            text-align:center; 
+        background-color: #6b1eff;
+        color: #ffffff;
+        border: none;
+        padding: 12px 60px;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+        grid-column: 4;
+        grid-row: 2;
+        &:hover {
+          background-color: #5a18d8;
+        }
+        justify-self: left;
+        }
     }
 }

@@ -26,14 +26,16 @@ const LoginComponent = () => {
       const response = await axios.post('http://localhost:3000/login', { email, password });
 
       if (response.data.token) {
-    
-        localStorage.setItem('token', response.data.token);
+        setTimeout(()=> {
+          localStorage.setItem('token', response.data.token);
         localStorage.setItem('userId', response.data.userId);
         localStorage.setItem('userName', response.data.userName);
         
         dispatch(setUser({ token: response.data.token, userId: response.data.userId, userName: response.data.userName }));
 
         navigate('/')
+        }, 1000)
+        
       }
     } catch {
       setErrorMessage('Chyba při přihlašování! Zkontroluj své údaje.');
@@ -42,7 +44,7 @@ const LoginComponent = () => {
 
   return (
     <div className={"login-form"}>
-      <h2>Přihlášení</h2>
+      
       <div className={Styles.loginFields}>
       <form onSubmit={handleSubmit}>
         <div>

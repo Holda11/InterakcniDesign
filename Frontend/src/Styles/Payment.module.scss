@@ -1,0 +1,114 @@
+.Row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    h2{
+        font-size: 64px;
+    }
+    @media screen and (max-width: 760px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+.FlightWrapper{
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    h3{
+        font-size: 32px;
+    }
+    
+}
+
+.Flight{
+    max-width: 70vw;
+    width: fit-content;
+    display: flex;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    background-image: linear-gradient(to right,rgb(161, 53, 204), rgb(233, 123, 80));
+    h3{
+        font-size: 24px;
+    }
+    &__Cell{
+        border-radius: 8px;
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        @media screen and (max-width: 760px) {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    &__Body{
+        background-color: #fafafa;
+        border-radius: 8px;
+        padding: 0 12px;
+    }
+    &__Layovers{
+        background-color: #fafafa;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        div{
+            display: flex;
+            flex-direction: column;
+            padding: 0 12px;
+        }
+    }
+    @media screen and (max-width: 760px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+.Form{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+    @media screen and (max-width: 760px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.White{
+    color: #fff;
+}
+
+.Valid{
+        color: #ffff;
+        letter-spacing: 2px;
+        font-weight: 700;
+        background: linear-gradient(to right, rgba(176,80,184,255),rgba(229,121,145,255));
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        &__No{
+        border: 1px solid rgba(128, 128, 128, 0.192);
+        color:rgb(80, 80, 80)6;
+        letter-spacing: 2px;
+        font-weight: 700;
+        background: #dbdada;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+}

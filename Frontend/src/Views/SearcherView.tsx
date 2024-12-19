@@ -12,11 +12,12 @@ const SearcherView = () => {
   const isFormValid = departureCity && arrivalCity && departureDate && returnDate;
 
   return (
-    <div className={styles.searchViewContainer}>
-    <div className={styles.Item}> 
+    <div className={styles.searchView}>
+      <div className={styles.searchViewContainer}>
+    <div className={styles.Item} style={{ justifySelf: 'left' }}> 
       <FlightSearch /> 
     </div>
-    <div className={styles.Item}> 
+    <div className={styles.Item} style={{ justifySelf: 'right' }}> 
       <Calendars /> 
     </div>
     <div className={styles.Item} style={{ justifySelf: 'left' }}> 
@@ -26,6 +27,8 @@ const SearcherView = () => {
       <button className={styles.searchButton} disabled={!isFormValid} onClick={()=> navigate('/Flights')}>Hledat</button>
     </div>
   </div>
+    </div>
+    
   );
 }
 export default SearcherView;
